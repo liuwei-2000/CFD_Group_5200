@@ -993,18 +993,18 @@ def save_data(u2d,v2d,p2d,k2d,om2d,vis2d):
 ######################### the execution of the code starts here #############################
 
 ########### grid specification ###########
-datax= np.loadtxt("x2d.dat")
+datax= cp.loadtxt("x2d.dat")
 x=datax[0:-1]
 ni=int(datax[-1])
 datay= np.loadtxt("y2d.dat")
 y=datay[0:-1]
 nj=int(datay[-1])
 
-x2d=np.zeros((ni+1,nj+1))
-y2d=np.zeros((ni+1,nj+1))
+x2d=cp.zeros((ni+1,nj+1))
+y2d=cp.zeros((ni+1,nj+1))
 
-x2d=np.reshape(x,(ni+1,nj+1))
-y2d=np.reshape(y,(ni+1,nj+1))
+x2d=cp.reshape(x,(ni+1,nj+1))
+y2d=cp.reshape(y,(ni+1,nj+1))
 
 # compute cell centers
 xp2d=0.25*(x2d[0:-1,0:-1]+x2d[0:-1,1:]+x2d[1:,0:-1]+x2d[1:,1:])
@@ -1012,21 +1012,21 @@ yp2d=0.25*(y2d[0:-1,0:-1]+y2d[0:-1,1:]+y2d[1:,0:-1]+y2d[1:,1:])
 
 # initialize geometric arrays
 
-vol=np.zeros((ni,nj))
-areas=np.zeros((ni,nj+1))
-areasx=np.zeros((ni,nj+1))
-areasy=np.zeros((ni,nj+1))
-areaw=np.zeros((ni+1,nj))
-areawx=np.zeros((ni+1,nj))
-areawy=np.zeros((ni+1,nj))
-areaz=np.zeros((ni,nj))
-as_bound=np.zeros((ni))
-an_bound=np.zeros((ni))
-aw_bound=np.zeros((nj))
-ae_bound=np.zeros((nj))
-az_bound=np.zeros((ni,nj))
-fx=np.zeros((ni,nj))
-fy=np.zeros((ni,nj))
+vol=cp.zeros((ni,nj))
+areas=cp.zeros((ni,nj+1))
+areasx=cp.zeros((ni,nj+1))
+areasy=cp.zeros((ni,nj+1))
+areaw=cp.zeros((ni+1,nj))
+areawx=cp.zeros((ni+1,nj))
+areawy=cp.zeros((ni+1,nj))
+areaz=cp.zeros((ni,nj))
+as_bound=cp.zeros((ni))
+an_bound=cp.zeros((ni))
+aw_bound=cp.zeros((nj))
+ae_bound=cp.zeros((nj))
+az_bound=cp.zeros((ni,nj))
+fx=cp.zeros((ni,nj))
+fy=cp.zeros((ni,nj))
 
 setup_case()
 
@@ -1036,39 +1036,39 @@ areaw,areawx,areawy,areas,areasx,areasy,vol,fx,fy,aw_bound,ae_bound,as_bound,an_
 
 
 # initialization
-u2d=np.ones((ni,nj))*1e-20
-v2d=np.ones((ni,nj))*1e-20
-p2d=np.ones((ni,nj))*1e-20
-pp2d=np.ones((ni,nj))*1e-20
-k2d=np.ones((ni,nj))*1
-om2d=np.ones((ni,nj))*1
-vis2d=np.ones((ni,nj))*viscos
+u2d=cp.ones((ni,nj))*1e-20
+v2d=cp.ones((ni,nj))*1e-20
+p2d=cp.ones((ni,nj))*1e-20
+pp2d=cp.ones((ni,nj))*1e-20
+k2d=cp.ones((ni,nj))*1
+om2d=cp.ones((ni,nj))*1
+vis2d=cp.ones((ni,nj))*viscos
 
-fmu2d=np.ones((ni,nj))
-gen=np.ones((ni,nj))
+fmu2d=cp.ones((ni,nj))
+gen=cp.ones((ni,nj))
 
-convw=np.ones((ni+1,nj))*1e-20
-convs=np.ones((ni,nj+1))*1e-20
+convw=cp.ones((ni+1,nj))*1e-20
+convs=cp.ones((ni,nj+1))*1e-20
 
-aw2d=np.ones((ni,nj))*1e-20
-ae2d=np.ones((ni,nj))*1e-20
-as2d=np.ones((ni,nj))*1e-20
-an2d=np.ones((ni,nj))*1e-20
-al2d=np.ones((ni,nj))*1e-20
-ah2d=np.ones((ni,nj))*1e-20
-ap2d=np.ones((ni,nj))*1e-20
-ap2d_vel=np.ones((ni,nj))*1e-20
-su2d=np.ones((ni,nj))*1e-20
-sp2d=np.ones((ni,nj))*1e-20
-ap2d=np.ones((ni,nj))*1e-20
-dudx=np.ones((ni,nj))*1e-20
-dudy=np.ones((ni,nj))*1e-20
-usynt_inlet=np.ones((nj))*1e-20
-vsynt_inlet=np.ones((nj))*1e-20
-wsynt_inlet=np.ones((nj))*1e-20
+aw2d=cp.ones((ni,nj))*1e-20
+ae2d=cp.ones((ni,nj))*1e-20
+as2d=cp.ones((ni,nj))*1e-20
+an2d=cp.ones((ni,nj))*1e-20
+al2d=cp.ones((ni,nj))*1e-20
+ah2d=cp.ones((ni,nj))*1e-20
+ap2d=cp.ones((ni,nj))*1e-20
+ap2d_vel=cp.ones((ni,nj))*1e-20
+su2d=cp.ones((ni,nj))*1e-20
+sp2d=cp.ones((ni,nj))*1e-20
+ap2d=cp.ones((ni,nj))*1e-20
+dudx=cp.ones((ni,nj))*1e-20
+dudy=cp.ones((ni,nj))*1e-20
+usynt_inlet=cp.ones((nj))*1e-20
+vsynt_inlet=cp.ones((nj))*1e-20
+wsynt_inlet=cp.ones((nj))*1e-20
 
 # comute Delta_max for LES/DES/PANS models
-delta_max=np.maximum(vol/areas[:,1:],vol/areaw[1:,:])
+delta_max=cp.maximum(vol/areas[:,1:],vol/areaw[1:,:])
 
 
 iter=0
@@ -1082,7 +1082,7 @@ u2d,v2d,k2d,om2d,vis2d=modify_init(u2d,v2d,k2d,om2d,vis2d)
 if restart: 
    u2d,v2d,p2d,k2d,om2d,vis2d= read_restart_data()
 
-k2d=np.maximum(k2d,1e-6)
+k2d=cp.maximum(k2d,1e-6)
 
 u2d_face_w,u2d_face_s=compute_face_phi(u2d,u_bc_west,u_bc_east,u_bc_south,u_bc_north,\
     u_bc_west_type,u_bc_east_type,u_bc_south_type,u_bc_north_type)
@@ -1149,7 +1149,7 @@ for iter in range(0,maxit):
       convw,convs=conv(u2d,v2d,p2d_face_w,p2d_face_s)
       convw=modify_outlet(convw)
       aw2d,ae2d,as2d,an2d,su2d,ap2d=calcp(pp2d,ap2d_vel)
-      pp2d=np.zeros((ni,nj))
+      pp2d=cp.zeros((ni,nj))
       pp2d,dummy=solve_2d(pp2d,aw2d,ae2d,as2d,an2d,su2d,ap2d,convergence_limit_pp,nsweep_pp,solver_pp)
 
 # correct u, v, w, p
@@ -1157,8 +1157,8 @@ for iter in range(0,maxit):
       convw=modify_outlet(convw)
 
 # continuity error
-      su2d=convw[0:-1,:]-np.roll(convw[0:-1,:],-1,axis=0)+convs[:,0:-1]-np.roll(convs[:,0:-1],-1,axis=1)
-      residual_pp=abs(np.sum(su2d))
+      su2d=convw[0:-1,:]-cp.roll(convw[0:-1,:],-1,axis=0)+convs[:,0:-1]-cp.roll(convs[:,0:-1],-1,axis=1)
+      residual_pp=abs(cp.sum(su2d))
 
       print(f"{'time pp: '}{time.time()-start_time:.2e}")
 
@@ -1198,7 +1198,7 @@ for iter in range(0,maxit):
          aw2d,ae2d,as2d,an2d,ap2d,su2d,sp2d=fix_omega()
 
          om2d,residual_om=solve_2d(om2d,aw2d,ae2d,as2d,an2d,su2d,ap2d,convergence_limit_om,nsweep_kom,solver_turb)
-         om2d=np.maximum(om2d,1e-10)
+         om2d=cp.maximum(om2d,1e-10)
 
          print(f"{'time omega: '}{time.time()-start_time:.2e}")
 
@@ -1209,7 +1209,7 @@ for iter in range(0,maxit):
       residual_k=residual_k/resnorm_vel**2
       residual_om=residual_om/resnorm_vel
 
-      resmax=np.max([residual_u ,residual_v,residual_p])
+      resmax=cp.max([residual_u ,residual_v,residual_p])
 
       print(f"\n{'--iter:'}{iter:d}, {'max residul:'}{resmax:.2e}, {'u:'}{residual_u:.2e}\
 , {'v:'}{residual_v:.2e}, {'pp:'}{residual_pp:.2e}, {'k:'}{residual_k:.2e}\
@@ -1221,10 +1221,10 @@ for iter in range(0,maxit):
 
 
 
-      vismax=np.max(vis2d.flatten())/viscos
-      umax=np.max(u2d.flatten())
-      ommin=np.min(om2d.flatten())
-      kmin=np.min(k2d.flatten())
+      vismax=cp.max(vis2d.flatten())/viscos
+      umax=cp.max(u2d.flatten())
+      ommin=cp.min(om2d.flatten())
+      kmin=cp.min(k2d.flatten())
 
       print(f"\n{'---iter: '}{iter:2d}, {'umax: '}{umax:.2e},{'vismax: '}{vismax:.2e}, {'kmin: '}{kmin:.2e}, {'ommin: '}{ommin:.2e}\n")
 

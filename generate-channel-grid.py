@@ -29,7 +29,7 @@ yc[int(nj / 2)] = 1
 
 print('y+', 0.5 * yc[1] / viscos)
 
-# Create 2D y2d array by repeating yc across rows (same as np.repeat)
+# Create 2D y2d array by repeating yc across rows (same as cp.repeat)
 y2d = cp.repeat(yc[None, :], repeats=ni + 1, axis=0)
 
 # Append nj to y2d

@@ -37,12 +37,12 @@ yp2d = 0.25 * (y2d[0:-1, 0:-1] + y2d[0:-1, 1:] + y2d[1:, 0:-1] + y2d[1:, 1:])
 y = yp2d[0, :]
 
 # Load data arrays as CuPy arrays
-u2d = cp.load('u2d_saved.npy')
-p2d = cp.load('p2d_saved.npy')
-v2d = cp.load('v2d_saved.npy')
-k2d = cp.load('k2d_saved.npy')
-om2d = cp.load('om2d_saved.npy')
-vis2d = cp.load('vis2d_saved.npy')
+u2d = cp.load('u2d_saved.cpy')
+p2d = cp.load('p2d_saved.cpy')
+v2d = cp.load('v2d_saved.cpy')
+k2d = cp.load('k2d_saved.cpy')
+om2d = cp.load('om2d_saved.cpy')
+vis2d = cp.load('vis2d_saved.cpy')
 
 # Average in x direction
 u = cp.mean(u2d, axis=0)
